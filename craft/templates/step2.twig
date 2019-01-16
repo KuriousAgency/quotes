@@ -1,0 +1,138 @@
+{% extends '_layout' %}
+
+{% block content %}
+<section id="top-matter" class="mt-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <img src="https://staging.kurious.digital/assets/img/logo-colour.png" alt="">
+            </div>
+            <div class="col-4">
+                <table class="table">
+                <tr>
+                    <th scope="row">Email:</th>
+                    <td><a href="mailto:hello@kurious.agency">hello@kurious.agency</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Tel:</th>
+                    <td>0845 129 7192</td>
+                </tr>
+                </table>
+            </div>
+            <div class="col-4">
+                <h3>Quote Ref: {{ quote.id ?? 'no id' }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+                <table class="table">
+                    <tr>
+                        {% set quoter = craft.categories().group('staff').id(quote.quoter).one() %}
+                        <th scope="row">Quoted By:</th>
+                        <td><a href="mailto:{{ quoter.email }}">{{ quoter.title }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">On:</th>
+                        <td>{{ "now"|date("d/m/Y") }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Valid Until:</th>
+                        <td>{{ "now"|date_modify("+6 months")|date("d/m/Y") }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-12 col-md-8 offset-md-2">
+                <table class="table">
+                    <tr>
+                        <th scope="row">On behalf of:</th>
+                        <td>{{ quote.customerName }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{{ quote.customerEmail }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{{ quote.customerCompany ?? '' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{{ quote.customerAddress ?? '' }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-10 offset-md-1">
+                <p><strong>Summary:</strong></p>
+                <p>{{ quote.summary }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="product-table">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Ref:</th>
+                        <th scope="col">Product:</th>
+                        <th scope="col">Units:</th>
+                        <th scope="col">Price per Unit:</th>
+                        <th scope="col">Total:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in quote.products %}
+                        <tr>
+                        <th scope="row">{{ product.ref }}</th>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.amount|currency('GBP') }} {{ product.units }}</td>
+                        <td>{{ product.pricePerUnit|currency('GBP') }}</td>
+                        <td>{{ product.productTotal|currency('GBP') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            </div>
+        </div>
+    </div>
+</section>
+<section id="bottom-matter">
+    <div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h3>Approved By: </h3>
+            
+        </div>
+        <div class="col-12 col-md-6">
+            <table class="table">
+                <tr>
+                    <th scope="row">Total Net Amount:</th>
+                    <td>{{ quote.subtotal|currency("GBP") }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Client Discount:</th>
+                    <td>{{ quote.discount }}%</td>
+                </tr>
+                <tr>
+                    <th scope="row">Sub-Total:</th>
+                    <td>{{ quote.discountedTotal|currency("GBP") }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Tax at {{ tax.number }}%</th>
+                    <td>{{ quote.tax|currency("GBP") }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><h5>Quote Total:</h5></th>
+                    <th scope="row"><h5>{{ quote.total|currency("GBP") }}</h5></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}

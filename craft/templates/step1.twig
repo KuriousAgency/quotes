@@ -1,0 +1,91 @@
+{% extends '_layout' %}
+{% block content %}
+<section id="quote-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>MM KA Quote Builder</h1>
+            </div>
+            <div class="col-12">
+                <form method="post">
+                    <input type="hidden" name="action" value="quotes-module/quotes/create-draft">
+                    {{ redirectInput('/step2') }}
+                    {{ getCsrfInput() }}
+                    <h3>Quote Details</h3>
+                    <div class="form-group">
+                        <label for="quoter">Quote Prepared By:</label>
+                        <select name="quoter" id="quoter" class="custom-select">
+                            {% for quoter in craft.categories().group("staff").all() %}
+                                <option value="{{ quoter.id }}">{{ quoter.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">On Behalf Of:</label>
+                        <input id="customer" type="text" placeholder="Customer Name" class="form-control" name="customer-name">
+                        <input type="email" placeholder="Customer Email" class="form-control" name="customer-email">
+                        <input type="text" placeholder="Customer Company" class="form-control" name="customer-company">
+                        <textarea rows="6" class="form-control" name="customer-address">Customer address</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="summary">Summary or special notes on quote</label>
+                        <textarea name="summary" id="summary" rows="5" class="form-control"></textarea>
+                    </div>
+                    <h3>Select Products/Services</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product Ref:</th>
+                                <th scope="col">Product:</th>
+                                <th scope="col">Category:</th>
+                                <th scope="col">Effort:</th>
+                                <th scope="col">Units:</th>
+                                <th scope="col">Add to Quote:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in craft.entries.section('Products').all() %}
+                                {% set id = product.productId %}
+                                <tr>
+                                    <th scope="row">{{ id }}</th>
+                                    <td>{{ product.title }}</td>
+                                    <td>{{ product.productType.one() }}</td>
+                                    <td><input type="number" name="amount-{{ id }}"></td>
+                                    <td>
+                                        {% if craft.categories().id(product.productType.one().id).one().fixedPrice %}
+                                        <select name="units-{{ id }}" disabled>
+                                            <option value="" selected>p/a</option>
+                                        {% else %}
+                                        <select name="units-{{ id }}">
+                                            <option value="h">hour(s)</option>
+                                            <option value="d">day(s)</option>
+                                        {% endif %}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="add-switch-{{ id }}" name="added[{{ id }}]">
+                                            <label class="custom-control-label" for="add-switch-{{ id }}"></label>
+                                        </div>
+                                    </td>
+                                </tr>                   
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <h3>Discounts/Ammendments</h3>
+                    <div class="form-group">
+                        <label for="discount">Percentage Reduction</label>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" name="discount" id="discount">
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg" type="submit">Create Draft Quote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

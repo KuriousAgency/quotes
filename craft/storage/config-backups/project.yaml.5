@@ -1,0 +1,211 @@
+categoryGroups:
+  0aa16f38-928a-4386-8d5c-78f5b0176d7d:
+    fieldLayouts:
+      21d9612c-6877-40ff-9d20-daefa1400386:
+        tabs:
+          -
+            fields:
+              5b5b8156-25aa-4d82-b78d-551cd5d1b1b5:
+                required: false
+                sortOrder: 2
+              d05561d2-84db-46dc-90e8-e40d7e0b2434:
+                required: false
+                sortOrder: 1
+            name: 'Tab 1'
+            sortOrder: 1
+    handle: productType
+    name: 'Product Type'
+    siteSettings:
+      aef35a32-a805-4d35-adee-637ac5f845ab:
+        hasUrls: false
+        template: null
+        uriFormat: null
+    structure:
+      maxLevels: null
+      uid: 7ac5e7f4-c2b5-4b1c-8ff9-943801a91605
+  f5ac19d6-c9c2-4508-b102-11d2104baa8e:
+    handle: staff
+    name: Staff
+    siteSettings:
+      aef35a32-a805-4d35-adee-637ac5f845ab:
+        hasUrls: false
+        template: null
+        uriFormat: null
+    structure:
+      maxLevels: null
+      uid: 1a6faa30-38ea-415d-a8c4-34856f203c04
+dateModified: 1547637563
+email:
+  fromEmail: mike@kurious.agency
+  fromName: quotes
+  transportType: craft\mail\transportadapters\Sendmail
+fieldGroups:
+  2dddbf21-388b-4f23-bcab-4bf0cfaa07c8:
+    name: Common
+  7611e478-98bb-4202-908b-e78e922d4730:
+    name: Products
+  f03e941a-0ecf-44c3-a1c1-11354e1b3dd3:
+    name: Staff
+fields:
+  1234521a-0ce3-4a41-9e72-8b5498db2a65:
+    contentColumnType: string
+    fieldGroup: f03e941a-0ecf-44c3-a1c1-11354e1b3dd3
+    handle: image
+    instructions: ''
+    name: image
+    searchable: true
+    settings:
+      allowedKinds: null
+      defaultUploadLocationSource: 'volume:aca2b21c-e8a0-4f2d-afea-0f8de1ebb743'
+      defaultUploadLocationSubpath: ''
+      limit: ''
+      localizeRelations: false
+      restrictFiles: ''
+      selectionLabel: ''
+      singleUploadLocationSource: 'volume:aca2b21c-e8a0-4f2d-afea-0f8de1ebb743'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources:
+        - 'volume:aca2b21c-e8a0-4f2d-afea-0f8de1ebb743'
+      targetSiteId: null
+      useSingleFolder: ''
+      viewMode: list
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  4d7c6f77-e15c-48c5-acb0-ebaf92310ab3:
+    contentColumnType: string
+    fieldGroup: f03e941a-0ecf-44c3-a1c1-11354e1b3dd3
+    handle: email
+    instructions: ''
+    name: email
+    searchable: true
+    settings:
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Email
+  5b5b8156-25aa-4d82-b78d-551cd5d1b1b5:
+    contentColumnType: boolean
+    fieldGroup: 2dddbf21-388b-4f23-bcab-4bf0cfaa07c8
+    handle: fixedPrice
+    instructions: 'Turn on to ignore hourly rate'
+    name: 'Fixed Price?'
+    searchable: true
+    settings:
+      default: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Lightswitch
+  6ed86a5c-73e2-4612-a8ef-595ead1779c8:
+    contentColumnType: string
+    fieldGroup: 7611e478-98bb-4202-908b-e78e922d4730
+    handle: productType
+    instructions: ''
+    name: 'Product Type'
+    searchable: true
+    settings:
+      branchLimit: ''
+      limit: null
+      localizeRelations: false
+      selectionLabel: ''
+      source: 'group:0aa16f38-928a-4386-8d5c-78f5b0176d7d'
+      sources: '*'
+      targetSiteId: null
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Categories
+  75b84f15-6e21-4257-892b-d4f3d7df61cc:
+    contentColumnType: text
+    fieldGroup: 7611e478-98bb-4202-908b-e78e922d4730
+    handle: productId
+    instructions: ''
+    name: 'Product Id'
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  d05561d2-84db-46dc-90e8-e40d7e0b2434:
+    contentColumnType: integer(10)
+    fieldGroup: 2dddbf21-388b-4f23-bcab-4bf0cfaa07c8
+    handle: price
+    instructions: ''
+    name: Price
+    searchable: true
+    settings:
+      decimals: 0
+      defaultValue: null
+      max: null
+      min: '0'
+      size: null
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\Number
+sections:
+  b0a46ade-206f-4481-895d-4936b90f396c:
+    enableVersioning: true
+    entryTypes:
+      ba0390b9-54a1-43c9-8ef2-12b38f915a32:
+        handle: products
+        hasTitleField: true
+        name: Products
+        sortOrder: 1
+        titleFormat: null
+        titleLabel: Title
+    handle: products
+    name: Products
+    propagateEntries: true
+    siteSettings:
+      aef35a32-a805-4d35-adee-637ac5f845ab:
+        enabledByDefault: true
+        hasUrls: false
+        template: null
+        uriFormat: null
+    structure:
+      maxLevels: ''
+      uid: b542b752-f113-46b0-a3d8-2073050502d8
+    type: structure
+siteGroups:
+  c14a9102-e93b-4341-afd9-1a9f5b01a727:
+    name: quotes
+sites:
+  aef35a32-a805-4d35-adee-637ac5f845ab:
+    baseUrl: $DEFAULT_SITE_URL
+    handle: default
+    hasUrls: true
+    language: en-US
+    name: quotes
+    primary: true
+    siteGroup: c14a9102-e93b-4341-afd9-1a9f5b01a727
+    sortOrder: 1
+system:
+  edition: solo
+  live: true
+  name: quotes
+  schemaVersion: 3.1.19
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: ''
+  photoVolumeUid: null
+  requireEmailVerification: true
+volumes:
+  aca2b21c-e8a0-4f2d-afea-0f8de1ebb743:
+    handle: images
+    hasUrls: true
+    name: Images
+    settings:
+      path: '@webroot/images'
+    sortOrder: 1
+    type: craft\volumes\Local
+    url: '@web/images'
+dateApplied: '2019-01-16 03:19:51'
